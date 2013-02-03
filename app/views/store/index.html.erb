@@ -1,0 +1,15 @@
+<div id="main">
+   <!--<p id ="notice"><%= notice %></p>-->
+
+<% @products.each do |product| %>
+  <div class ="entry">
+    <b><%= product.title %></b><br />
+
+        <%= image_tag(product.image_url) %> <br />
+        Rating:<%= product.rating %>
+    <b style="color:#1a1f80;font-size: 12px"><%=number_to_currency (product.price) %> </b>
+        <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+  </div>
+        <% end %>
+</div>
+

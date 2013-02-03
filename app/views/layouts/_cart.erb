@@ -1,0 +1,35 @@
+<% if @cart %>
+<div class="cart_title"><h2>Your Cart</h2></div>
+
+    <table>
+      <p id="notice"><%= notice %></p>
+        <%= render(@cart.line_items) %>
+            <tr class="total_line">
+
+
+                <td colspan="2">Sub Total</td>
+                <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+
+      <tr class="total_line">
+
+        <td colspan="2">Discount</td>
+        <td class="total_cell"><%= number_to_currency(@cart.promo) %></td>
+
+      </tr>
+
+      <tr class="total_line">
+
+        <td colspan="2">You pay</td>
+        <td class="total_cell"><%= number_to_currency(@cart.grand_total) %></td>
+
+      </tr>
+
+
+
+    </table>
+        <%= button_to "Checkout", new_order_path, method: :get %>
+        <%= button_to 'Empty cart', @cart, method: :delete,
+        confirm: 'Are you sure?' %>
+    <% else %>
+<div class="cart_title">Your Cart Is Empty</div>
+    <% end %>

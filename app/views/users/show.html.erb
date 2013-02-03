@@ -1,0 +1,17 @@
+<div id="mainmargin">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <b>email:</b>
+    <%= @user.email %>
+  </p>
+  <p>
+    <b>Password:</b>
+    <%= @user.password %>
+  </p>
+  <% if current_user and current_user.admin %>
+      <%= link_to 'Show', @user %> |
+      <%= link_to 'Back', users_path %>
+  <% else %>
+      <%= link_to 'Back', :controller => "users", :action => "welcome", :notice => "Edited successfully" %>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+<div id="mainmargin">
+  <% if current_user and current_user.admin %>
+  <h1>New cart</h1>
+    <%= render 'form' %>
+    <%= link_to 'Back', carts_path %>
+  <% end %>
+</div>

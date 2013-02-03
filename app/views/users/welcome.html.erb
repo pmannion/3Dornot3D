@@ -1,0 +1,59 @@
+<div id="mainmargin">
+  <% if current_user and current_user.admin %>
+      <h2>Welcome Administrator</h2>
+      <b><%= current_user.email %></b>
+      <%=  Time.now %><br/> <br/>
+     <b> We have <%= @orders.to_a.length %> orders </b>
+      <br/>
+      <b> We have <%= @trades.to_a.length %> trade requests </b>
+  <% else %>
+      <h2>Welcome to 3DorNot3D </h2>
+      <b><%= current_user.email %></b>
+      <br/>
+      <br/>
+      would you like to edit your details?
+      <%= link_to 'Edit', edit_user_path(current_user) %>
+      <br/>
+      <br/>
+      <% if current_user and not current_user.admin %>
+
+<div id="main_left">
+      <fieldset>
+        <legend><h2>Your Orders</h2></legend>
+          <% @history.each do |order| %>
+              <b>Name:</b> <%= order.name %> <br/>
+              <b>Date of purchase:</b><%= time_ago_in_words (order.created_at) %> ago <br/>
+              <b>Pay type:</b><%= order.pay_type %></td> <br/>
+              <%= link_to 'Order Details', order %>  <br/>  <br/>
+          <% end %>
+          <% if current_user and not current_user.admin %>
+            <p><%= will_paginate @history %></p>
+      </fieldset>
+        <% end %>
+</div>
+      <% end %>
+      <fieldset>
+         <legend><h2>Your Trades</h2></legend>
+            <% @traded.each do |trade| %>
+            <b>Name:</b> <%= trade.name %> <br/>
+            <b>Requested on:</b><%= time_ago_in_words(trade.created_at) %> ago<br/>
+            <b>Status:</b><%= trade.trade_status %> <br/>
+
+            <% if trade.trade_status == "pending"  %>
+            <b>Processed on:</b> Not yet processed <br/>
+                <% else %>
+                <b>Processed on:</b><%= time_ago_in_words(trade.updated_at) %> ago<br/>
+                <% end %>
+                <%= link_to 'Trade Details', trade %>  <br/>  <br/>
+            <% end %>
+            <% if current_user and not current_user.admin %>
+                <p><%= will_paginate @traded %></p>
+         </fieldset>
+          <% end %>
+          <% end %>
+</div>
+
+
+
+
+

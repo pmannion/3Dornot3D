@@ -1,0 +1,17 @@
+<% if @credit %>
+    <div class="cart_title"><h2>Your Credit</h2></div>
+    <table>
+      <%= render(@credit.credit_items) %>
+      <tr class="total_line">
+        <td colspan="2">Total</td>
+        <td class="total_cell"><%= number_to_currency(@credit.credit_total) %></td>
+      </tr>
+    </table>
+        <%= button_to "Request credit", new_trade_path, method: :get %>
+
+        <%= button_to 'Reset', @credit, method: :delete,
+        confirm: 'Are you sure?' %>
+    <% else %>
+    <div class="cart_title">No credit items entered</div>
+<% end %>
+

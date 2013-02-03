@@ -1,0 +1,129 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+/* START_HIGHLIGHT */
+
+
+
+table {
+    right:50px;
+    border-collapse: collapse;
+}
+table tr td {
+    padding: 10px;
+    vertical-align: top;
+}
+.list_image {
+    width:  60px;
+    height: 70px;
+}
+#list_description {
+   width: 90%;
+}
+dl {
+    margin: 2px;
+}
+dt {
+    color:        #244;
+    font-weight:  bold;
+    font-size:    larger;
+}
+dd {
+    margin: 0;
+}
+.list_actions {
+    font-size:    x-small;
+    text-align:   right;
+    padding-left: 1em;
+}
+.list_line_even {
+    background: #a9eee0;
+}
+.list_line_odd {
+    background: #88d0df;
+}
+.item_price, .total_line {
+  text-align: right;
+}
+.total_line .total_cell, credit_available {
+  font-weight: bold;
+  border-top: 2px solid #1A1F80;}
+
+.credit_price, .credit_line,{
+  text-align: right;
+}
+.credit_total .total_cell {
+  font-weight:bold;
+  border-top: 1px solid #595;
+}
+credit_title{
+  text-align: right;
+}
+#credit {
+  margin:10px 10px 0px 10px;
+   background-color: #1e7c9a;
+   border: 2px solid #1A1F80;
+   font-size: smaller;
+   color: white;
+}
+#cart {
+  margin:0px 10px 0px 10px;
+  background-color: #ABB8BD;
+  //background-color: #bebc37;
+  border:2px solid #1a1f80;
+  font-size: smaller;
+  color: white;
+}
+#admins {
+  margin:10px 10px 0px 10px;
+  background-color: #ABB8BD;
+  border: 2px solid #1a1f80;
+}
+.credits, #side #credit {
+  .credit_title {
+    font: 120% bold;
+  }
+  .credit_price, .credit_total {
+    text-align: right;
+  }
+  .credit_total .credit_cell {
+    font-weight: bold;
+    border-top: 1px solid #595;
+  }
+}
+#productpage {
+  position:relative;
+  width:1000px;
+  top:-470px;
+  left:190px;
+  right:10px;
+}
+#main_left {
+  width:391px;
+  height:400px;
+  float: left;
+  margin-right: 10px;
+}
+#mainmargin {
+  width: 782px;
+  height: 502px;
+  border: 4px solid #1e7c9a;
+  background-image: url(main_grey_grad.jpg);
+  float: left;
+  padding: 20px;
+}
+.price_red{
+  font: 120% bold;
+  color: #ff0000;
+}

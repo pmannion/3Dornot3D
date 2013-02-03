@@ -1,0 +1,28 @@
+<div id="mainmargin">
+  <% if current_user and current_user.admin %>
+  <h1>Listing credits</h1>
+<p id="notice"><%= notice %></p>
+<table>
+  <tr>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @credits.each do |credit| %>
+  <tr>
+    <td><%= number_to_currency(credit.credit_total) %></td>
+    <td><%= link_to 'Show', credit %></td>
+    <td><%= link_to 'Edit', edit_credit_path(credit) %></td>
+    <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  <% end %>
+</table>
+
+<br />
+  <% if current_user and current_user.admin %>
+<%= link_to 'New Credit', new_credit_path %>
+<p><%= will_paginate @credits %></p>
+  <% end %>
+  </div>

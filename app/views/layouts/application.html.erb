@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>3DorNot3D.com</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class='<%= controller.controller_name %>'>
+
+<div id="main_wrapper">
+  <div id="sidebar_left">
+    <div id="search">
+    </div>
+
+    <div id="cart">
+      <%= render 'layouts/cart' %>
+    </div>
+
+    <div id="credit">
+      <%= render 'layouts/credit' %>
+    </div>
+
+    <div id="admins">
+      <% if current_user and current_user.admin %>
+          <ul>
+            <li ><%= link_to 'Orders',   orders_path   %></li>
+            <li ><%= link_to 'Products', products_path %></li>
+            <li ><%= link_to 'Admin',    users_path    %></li>
+            <li ><%= link_to 'Trades',   trades_path   %></li>
+          </ul>
+          <%= button_to 'Logout', logout_path, method: :delete   %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div id="header"></div>
+  <div id="login">
+    <% if logged_in? == false %>
+        <%= form_tag sessions_path do %>
+            <%= label_tag :email %><br>
+            <%= text_field_tag :email %>
+            <br/>
+            <%= label_tag :password %><br>
+            <%= password_field_tag :password %>
+            <%= submit_tag 'Login' %>
+        <% end %>
+
+    <% else %>
+        <b><%= current_user.email %> <br></b>
+        <%= button_to "Logout", logout_path, method: :get  %><br>
+    <% end %>
+    <br/>
+    <%= form_tag products_path, :method => 'get' do %>
+        <%= text_field_tag :search_query,
+                           params[:search_query] %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
+
+  <div id="nav_bar">
+    <ul>
+      <li><%= link_to "New movies", :controller => "store",  :action => "index" %></li>
+      <li><%= link_to "Used movies", :controller => "store",  :action => "used" %></li>
+      <li><%= link_to "Most Wanted", :controller => "store",  :action => "most_wanted" %></li>
+        <% if logged_in? %>
+      <li><%= link_to "my profile", :controller => "users", :action => "welcome" %></li>
+
+        <% else %>
+      <li><%= link_to "Sign Up", :controller => "users",  :action => "new" %></li>
+        <% end %>
+    </ul>
+  </div>
+
+
+      <div id="right_upr"><h3><em>You may also like these!</em></h3></div>
+  <%= yield %>
+  <div id ="sidebar_right">
+
+    <% @sidebar.each do |product| %>
+        <b><%= product.title %></b><br>
+        condition:<%= product.stock_status %><br/>
+        <%= image_tag(product.image_url) %><br>
+        <b style="color:#1a1f80;font-size: 12px"><%=number_to_currency (product.price) %></b>
+        <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+        <br>
+    <% end %>
+  </div>
+
+  <div id="below_main"> </div>
+
+  <div id="info_wrapper">
+    <div id="info_pic">
+      <% @infowrapper.each do |product| %>
+          <%= image_tag(product.image_url) %>
+      <% end %>
+    </div>
+
+    <div id="info_text">
+      <% @infowrapper.each do |product| %>
+          <b><%= product.title %></b>
+          condition:<%= product.stock_status %>  <b><em>&nbsp;Don't forget your 3D Glasses!</em></b> <br/>
+          <%= product.description %> Sed ut perspiciatis unde omnis iste natus error sit, eaque illo. &nbsp;
+          <b> Rating:<%= product.rating %></b>
+          </div>
+          <div id="info_price">
+            <b style="color:#da0000;font-size: 17px"><%=number_to_currency (product.price) %> </b>
+            <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+          </div>
+      <% end %>
+
+      </div>
+  <div id="footer"> &copy; 3D or not 3D 2012 </div>
+</div>
+</body>
+</html>

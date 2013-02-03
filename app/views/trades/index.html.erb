@@ -1,0 +1,34 @@
+<div id="mainmargin">
+  <% if current_user and current_user.admin %>
+      <h1>Listing Trades</h1>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>User_id</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @trades.each do |trade| %>
+            <tr>
+              <td><%= trade.name %></td>
+              <td><%= trade.user_id %></td>
+              <td><%= trade.address %></td>
+              <td><%= trade.email %></td>
+              <td><%= trade.trade_status %></td>
+
+
+              <td><%= link_to 'Show', trade %></td>
+              <td><%= link_to 'Edit', edit_trade_path(trade) %></td>
+              <td><%= link_to 'Destroy', trade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+  <% end %>
+  </table>
+  <% if current_user and current_user.admin %>
+      <%= link_to 'New Trade', new_trade_path %>
+      <p><%= will_paginate @trades %></p>
+  <% end %>
+</div>

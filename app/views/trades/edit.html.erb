@@ -1,0 +1,19 @@
+<div id="mainmargin">
+  <!--Available to admin only to update the status of trades-->
+  <h1>Trade confirmation</h1>
+  <%= form_for(@trade) do |i| %>
+
+      <div class="field">
+        <%= i.label :trade_status %><br />
+        <%= i.select :trade_status, Trade::STATUS_TYPES, prompt: "select a status" %>  <%= i.submit 'Update status' %>
+      </div>
+      <fieldset>
+        <h3>For customer use only !</h3>
+        <%= render 'form' %>
+
+        <%= link_to 'Show', @trade %> |
+        <%= link_to 'Back', trades_path %>
+      </fieldset>
+      </div>
+
+  <% end %>

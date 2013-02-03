@@ -1,0 +1,32 @@
+<div id="mainmargin">
+  <% if current_user and current_user.admin %>
+  <h1>Listing credit_items</h1>
+<p id="notice"><%= notice %></p>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Credit</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @credit_items.each do |credit_item| %>
+  <tr>
+    <td><%= credit_item.product_id %></td>
+    <td><%= credit_item.credit_id %></td>
+    <td><%= link_to 'Show', credit_item %></td>
+    <td><%= link_to 'Edit', edit_credit_item_path(credit_item) %></td>
+    <td><%= link_to 'Destroy', credit_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  <% end %>
+</table>
+
+<br />
+  <% if current_user and current_user.admin %>
+      <%= link_to 'New Credit item', new_credit_item_path %>
+      <p><%= will_paginate @credit_items %></p>
+  <% end %>
+
+</div>

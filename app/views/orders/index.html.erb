@@ -1,0 +1,38 @@
+<div id="mainmargin">
+  <% if current_user and current_user.admin %>
+      <h1>Listing Orders</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>user_id</th>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Pay type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.name %></td>
+    <td><%= order.user_id %></td>
+    <td><%= order.address %></td>
+    <td><%= order.email %></td>
+    <td><%= order.pay_type %></td>
+
+    <td><%= link_to 'Show', order %></td>
+    <td><%= link_to 'Edit', edit_order_path(order) %></td>
+    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+
+<% end %>
+</table>
+  <% if current_user and current_user.admin %>
+  <%= link_to 'New Order', new_order_path %>
+  <p><%= will_paginate @orders %></p>
+  <% end %>
+  </div>
+
+

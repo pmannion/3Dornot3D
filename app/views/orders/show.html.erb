@@ -1,0 +1,39 @@
+<div id="mainmargin">
+  <p id="notice"><%= notice %></p>
+    <br />
+
+<div class="depot_form">
+  <fieldset>
+    <legend>Order Details</legend>
+<p>
+  <b>Name:</b>
+  <%= @order.name %>
+</p>
+<p>
+  <b>Address:</b>
+  <%= @order.address %>
+</p>
+<p>
+  <b>Email:</b>
+  <%= @order.email %>
+</p>
+<p>
+  <b>Pay type:</b>
+  <%= @order.pay_type %>
+</p>
+<p>
+   <b>Items:</b> <br/>
+   <%= render(@order.line_items.to_a)%>
+</p>
+
+    <% if current_user and current_user.admin %>
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
+        <%end%>
+    <br />
+ </fieldset>
+</div>
+    <h2>Remember you can trade your used movies for credit!</h2>
+</div>
+
+

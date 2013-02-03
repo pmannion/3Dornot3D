@@ -1,0 +1,31 @@
+
+<div id="mainmargin">
+  <p id="notice"><%= notice %></p>
+<div class="depot_form">
+  <fieldset>
+    <legend>Trade details</legend>
+<p>
+  <b>Name:</b>
+  <%= @trade.name %>
+</p>
+<p>
+  <b>Address:</b>
+  <%= @trade.address %>
+</p>
+<p>
+  <b>Email:</b>
+  <%= @trade.email %>
+</p>
+    <p>
+      <b>Items:</b> <br/>
+     <%= render (@credit.credit_items) %>
+    </p>
+ </fieldset>
+</div>
+  <% if current_user.admin %>
+    <%= link_to 'Edit', edit_trade_path(@trade) %> |
+
+  <% end %>
+  <%= link_to "back to my profile", :controller => "users", :action => "welcome" %>
+
+</div>
