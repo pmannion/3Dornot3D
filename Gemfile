@@ -40,4 +40,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'will_paginate', '~> 3.0'
-gem 'twilio-ruby'
+
+group :production do
+  gem 'pg', '0.12.2'
+end
