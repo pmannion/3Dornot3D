@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_admin?
   def is_admin?
     if current_user and (current_user.admin == true)
-      return true
+      true
     else
       access_denied
     end
